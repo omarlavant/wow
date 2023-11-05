@@ -1,6 +1,7 @@
 from flask import Flask
 import random
 
+
 app = Flask(__name__)
 
 list = ["Teknolojik bağımlılıktan mustarip olan çoğu kişi, kendilerini şebeke kapsama alanı dışında bulduklarında veya cihazlarını kullanamadıkları zaman yoğun stres yaşarlar.",
@@ -12,6 +13,15 @@ list = ["Teknolojik bağımlılıktan mustarip olan çoğu kişi, kendilerini ş
         "Elon Musk ayrıca sosyal ağların düzenlenmesini ve kullanıcıların kişisel verilerinin korunmasını savunmaktadır. Sosyal ağların hakkımızda büyük miktarda bilgi topladığını ve bu bilgilerin daha sonra düşüncelerimizi ve davranışlarımızı manipüle etmek için kullanılabileceğini iddia ediyor.",
         "Sosyal ağların olumlu ve olumsuz yanları vardır ve bu platformları kullanırken her ikisinin de farkında olmalıyız."
         ]
+password = ""
+def gen_pass(pass_length):
+    elements = "+-/*!&$#?=@<>"
+    password = ""
+
+    for i in range(pass_length):
+        password += random.choice(elements)
+
+    return password
 
 @app.route("/")
 def hello_world():
@@ -21,4 +31,9 @@ def hello_world():
 def rastgele():
     return f'<h1>{random.choice(list)}</h1>'
 
+@app.route("/sifre")
+def gen_pass():
+    return f'<h1>{(password)}</h1>'
+
 app.run(debug=True)
+
